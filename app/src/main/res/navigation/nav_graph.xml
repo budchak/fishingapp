@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/appFunctionAggregatorFragment">
+
+    <fragment
+        android:id="@+id/appFunctionAggregatorFragment"
+        android:name="com.yaroshevich.fishingapp.mainScreen.ui.fragments.AppFunctionFragment"
+        android:label="AppFunctionAggregatorFragment"
+        tools:layout="@layout/fragment_app_function" />
+    <fragment
+        android:id="@+id/createFishingFragment"
+        android:name="com.yaroshevich.fishingapp.fishing.CreateFishingFragment"
+        android:label="CreateFishingFragment"
+        tools:layout="@layout/fragment_create_fishing" />
+    <fragment
+        android:id="@+id/equipmentCategoriesFragment"
+        android:name="com.yaroshevich.fishingapp.equipment.ui.fragments.EquipmentCategoriesFragment"
+        android:label="EquipmentCategoriesFragment"
+        tools:layout="@layout/fragment_equipment_categories" />
+    <fragment
+        android:id="@+id/rodDetailFragment"
+        android:name="com.yaroshevich.fishingapp.equipment.categories.ui.detailEquipment.fragments.RodDetailFragment"
+        android:label="RodFragment" />
+    <fragment
+        android:id="@+id/reelDetailFragment"
+        android:name="com.yaroshevich.fishingapp.equipment.categories.ui.detailEquipment.fragments.ReelDetailFragment"
+        android:label="ReelDetailFragment" />
+    <fragment
+        android:id="@+id/searchCarsFragment"
+        android:name="com.yaroshevich.fishingapp.cars_search.SearchCarsFragment"
+        android:label="SearchCarsFragment" />
+</navigation>
