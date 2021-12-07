@@ -14,7 +14,6 @@ import com.yaroshevich.fishingapp.App
 import com.yaroshevich.fishingapp.R
 import com.yaroshevich.fishingapp.databinding.FragmentEquipmentListBinding
 import com.yaroshevich.fishingapp.equipment.categories.ui.listEquipment.viewModel.EquipmentListViewModel
-import com.yaroshevich.fishingapp.equipment.ui.fragments.EquipmentInjector
 import com.yaroshevich.fishingapp.model.equipment.Equipment
 import com.yaroshevich.fishingapp.recycler.BindingRecyclerViewAdapter
 import javax.inject.Inject
@@ -29,32 +28,34 @@ class EquipmentListFragment : Fragment() {
     lateinit var binding: FragmentEquipmentListBinding
 
     @Inject
-    lateinit var injector: EquipmentInjector
-
     lateinit var equipmentViewModel: EquipmentListViewModel
 
-
+    @Inject
     lateinit var adapter: BindingRecyclerViewAdapter
 
-
-    val showEmptyViewIfListEmpty: (equipment: List<Equipment>) -> Unit = { equipment ->
+    val showEmptyView: (equipment: List<Equipment>) -> Unit = { equipment ->
         if (equipment.isEmpty()) showEmptyView(true) else showEmptyView(false)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        App.getInstance().getCategoryComponent(this).inject(this)
-
+        initDaggerComponent()
         initWithEquipmentType()
     }
 
-    private fun initWithEquipmentType() {
-        val equipmentType = getBundleString(arguments, EQUIPMENT_TYPE)
-        Log.e("что в Bundle", "вот что: $equipmentType")
+    private fun initDaggerComponent() {
 
-        equipmentViewModel = injector.getViewModel(equipmentType)
-        adapter = injector.getAdapter(equipmentType)
+        App.getInstance().getCategoryComponent(this).inject(this)
+
+    }
+
+    private fun initWithEquipmentType() {
+
+        val equipmentType = getBundleString(arguments, EQUIPMENT_TYPE)
+
+        Log.e("что в Bundle", "вот что: $equipmentType")
+        equipmentViewModel.loadEquipmentList(equipmentType)
     }
 
 
@@ -74,7 +75,7 @@ class EquipmentListFragment : Fragment() {
 
         equipmentViewModel.getEquipmentList().observe(viewLifecycleOwner, { list ->
 
-            showEmptyViewIfListEmpty(list)
+            showEmptyView(list.isEmpty())
 
             Log.e("count", "${list.size}")
 
@@ -98,7 +99,7 @@ class EquipmentListFragment : Fragment() {
 
     }
 
-    fun initRecyclerView(adapter: BindingRecyclerViewAdapter) {
+    private fun initRecyclerView(adapter: BindingRecyclerViewAdapter) {
 
         equipmentRecyclerView.layoutManager = LinearLayoutManager(context)
 
@@ -113,7 +114,7 @@ class EquipmentListFragment : Fragment() {
 
     }
 
-    fun setBindingVariable() {
+    private fun setBindingVariable() {
         binding.lifecycleOwner = viewLifecycleOwner
         binding.isListEmpty = false
 

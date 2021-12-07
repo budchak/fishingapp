@@ -25,7 +25,7 @@ const val EQUIPMENT_ID = "EQUIPMENT_ID"
 abstract class EquipmentDetailFragment : Fragment() {
 
 
-    lateinit var equipmentDescriptionRecyclerView: RecyclerView
+    private lateinit var equipmentDescriptionRecyclerView: RecyclerView
 
     var arg = -1
 

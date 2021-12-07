@@ -6,7 +6,6 @@ import com.yaroshevich.fishingapp.di.components.AppComponent
 import com.yaroshevich.fishingapp.di.components.DaggerAppComponent
 import com.yaroshevich.fishingapp.di.components.EquipmentComponent
 import com.yaroshevich.fishingapp.di.modules.EquipmentModule
-import com.yaroshevich.fishingapp.di.modules.RodModule
 
 class App : Application() {
 
@@ -16,8 +15,7 @@ class App : Application() {
 
     fun getCategoryComponent(fragment: Fragment): EquipmentComponent {
         return appComponent.equipmentComponentBuilder()
-            .equipmentCategoryModule(EquipmentModule(fragment))
-            .rodModule(RodModule()).build()
+            .equipmentCategoryModule(EquipmentModule(fragment)).build()
     }
 
 

@@ -1,5 +1,6 @@
 package com.yaroshevich.fishingapp.recycler
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -58,7 +59,7 @@ class BindingRecyclerViewAdapter @Inject constructor() : RecyclerView.Adapter<Ge
     }
 
     override fun getItemCount(): Int {
-
+        Log.e("size", " ${items.size}")
         return items.size
 
     }

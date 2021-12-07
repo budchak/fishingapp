@@ -7,7 +7,7 @@
 
         <variable
             name="equipment"
-            type="com.yaroshevich.fishingapp.model.equipment.Equipment" />
+            type="com.yaroshevich.fishingapp.equipment.categories.ui.listEquipment.viewModel.EquipmentPreview" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -33,7 +33,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
-            android:text="@{equipment.title}"
+            android:text="@{equipment.name}"
             app:layout_constraintStart_toEndOf="@+id/imageView2"
             app:layout_constraintTop_toTopOf="@+id/imageView2"
             tools:text="Название снаряжения " />

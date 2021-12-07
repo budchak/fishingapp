@@ -21,6 +21,8 @@ class EquipmentCategoriesStateAdapter @Inject constructor(
         return when (viewModel.getCategory(position)) {
             CategoryEnum.ROD -> factory.createFragment("Rod")
             CategoryEnum.REEL -> factory.createFragment("Reel")
+            CategoryEnum.BAIT -> factory.createFragment("Bait")
+            CategoryEnum.OTHER -> factory.createFragment("Rig")
             else -> HolderFragment()
         }
 
